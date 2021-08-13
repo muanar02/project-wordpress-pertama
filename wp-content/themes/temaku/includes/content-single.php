@@ -11,3 +11,56 @@
 <div id="content">
     <?php the_content(); ?>
 </div>
+
+<?php
+$comment_number = get_comments_number();
+
+if($comment_number != 0):
+?>
+<div class="comment card mt-4">
+    <div class="card-header text-uppercase">Coment List</div>
+    <div class="comment-list mt-3">
+        <ol>
+        <?php
+        $comments = get_comments(array(
+            'post_id' => $post->ID,
+            'status' => 'approve'
+        ));
+        wp_list_comments(array(
+            'per_page' => 15,
+
+        ), $comments);
+        ?>
+        </ol>
+    </div>
+</div>
+<?php
+endif;
+?>
+
+
+
+<div class="comment-form py-2 px-3 my-4 card">
+<?php
+
+$fields = array(
+    'author' => '<div class="d-flex justify-content-between mt-3"><input type="text" class="form-control" id="author" name="author" value="'.esc_attr($commenter['comment_author']).'" '.$aria_req.' placeholder="Name" style="width:45%" />',
+    'email' => '<input type="text" class="form-control" id="email" name="email" value="'.esc_attr($commenter['comment_author_email']).'" '.$aria_req.' placeholder="Email" style="width:45%" /></div>',
+    'cookies' => ''
+);
+
+$args = array( 
+    'title_reply' => '',
+    'title_reply_to' => 'Reply',
+    'cancel_reply_link' => 'Cancel Reply',
+    'fields' => $fields,
+    'comment_field' => '<textarea class="form-control" id="comment" name="comment" aria-required="true" placeholder="Your Message" ></textarea>',
+    'label_submit' => 'Submit Comment',
+    'id_submit' => 'comment-submit',
+    'class_submit' => 'btn btn-primary mt-3',
+    'comment_notes_before' => ''
+
+);
+comment_form($args);
+?>
+</div>

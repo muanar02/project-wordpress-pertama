@@ -16,6 +16,13 @@ function load_file() {
     wp_enqueue_script('bootstrap', $theme_path.'/assets/js/bootstrap.bundle.min.js', '', false, true);
 }
 
+add_action('admin_enqueue_scripts', 'load_media_script');
+
+function load_media_script() {
+    wp_enqueue_media();
+    wp_enqueue_script( 'theme-options-script', get_stylesheet_directory_uri() . '/assets/js/theme-options-script.js', array('jquery'), null, false );
+}
+
 add_filter('excerpt_length', 'get_excerpt_length');
 
 // the_excerpt
@@ -137,7 +144,7 @@ function add_post_type_book() {
         'hierarchical'       => false,
         'menu_position'      => 5,
         'taxonomies'         => array('genre', 'writer'),
-        'supports'           => array( 'title', 'editor', 'thumbnail', 'comments')
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt')
     );
 
     register_post_type( 'book', $args );
@@ -243,19 +250,9 @@ function add_admin_menu() {
 
 function fungsi_theme_options() {
     if($_POST) {     
-        $site_logo = $_FILES['site_logo']['name'];
-        $site_favicon = $_FILES['site_favicon']['name'];
-        // move_uploaded_file($_FILES['site_logo']['tmp_name'], get_template_directory_uri()."/assets/img/".$_FILES['site_logo']['name']);
-        if($site_logo) {
-            move_uploaded_file($_FILES['site_logo']['tmp_name'], "/opt/lampp/htdocs/belajar/wp-content/themes/temaku/assets/img/".$_FILES['site_logo']['name']); 
-            update_option('site_logo', $site_logo);
-        }
 
-        if($site_favicon) { 
-            move_uploaded_file($_FILES['site_favicon']['tmp_name'], "/opt/lampp/htdocs/belajar/wp-content/themes/temaku/assets/img/".$_FILES['site_favicon']['name']);
-            update_option('site_favicon', $site_favicon);
-        }
-        
+        update_option('logo', $_POST['logo']);
+        update_option('favicon', $_POST['favicon']);
         update_option('footer_copyright', $_POST['footer_copyright']);
         update_option('facebook', $_POST['facebook']);
         update_option('twitter', $_POST['twitter']);
@@ -276,9 +273,33 @@ function fungsi_theme_options() {
         .input-group input {
             width: 50%;
         }
+        .input-group .div-input {
+            width: 50%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        .input-group .div-input input[type=url] {
+            width: 67%;
+            margin-right: 3%;
+        }
+        .input-group .div-input input[type=button] {
+            width: 30%;
+        }
+        .btn-input {
+            font-size: 16px;
+            padding: 10px 50px;
+            border-radius: 10px;
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+        }
+       
         .btn {
             font-size: 16px;
-            padding: 10px 20px;
+            padding: 10px 50px;
             border-radius: 10px;
             color: #fff;
             background-color: #007bff;
@@ -291,17 +312,28 @@ function fungsi_theme_options() {
             background-color: #0069d9;
             border-color: #0062cc;
         }
+        .btn-input {
+            font-size: 12px;
+            padding: 10px 10px;
+            border-radius: 10px;
+        }
 
     </style>
     <h2>Theme Options</h2>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="input-group">
-            <label for="site_logo">Site Logo : </label>
-            <input type="file" name='site_logo' id='site_logo'>
+            <label for="logo">Site Logo : </label>
+            <div class="div-input">
+                <input id="logo" type="url" size="30" name="logo" value="<?php echo get_option('logo'); ?>" />
+                <input class="btn btn-input" onclick="uploadButton('logo')" type="button" value="Upload Logo" />
+            </div> 
         </div>
         <div class="input-group">
-            <label for="site_favicon">Site Favicon : </label>
-            <input type="file" name='site_favicon' id='site_favicon'>
+            <label for="favicon">Site Favicon : </label>
+            <div class="div-input">
+                <input id="favicon" type="url" size="30" name="favicon" value="<?php echo get_option('favicon'); ?>" />
+                <input class="btn btn-input" onclick="uploadButton('favicon')" type="button" value="Upload Favicon" />
+            </div> 
         </div>
         <div class="input-group">
             <label for="footer_copyright">Footer Copyright : </label>
@@ -317,7 +349,6 @@ function fungsi_theme_options() {
         </div>
         <button type="submit" id="simpan" class="btn">Simpan</button>
     </form>
-
    
     <?php
 }

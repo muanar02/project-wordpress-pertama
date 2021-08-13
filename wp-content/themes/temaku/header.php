@@ -5,8 +5,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="shortcut icon" href="<?= get_template_directory_uri(); ?>/assets/img/<?= get_option('site_favicon'); ?>" type="image/x-icon">
-    <link rel="icon" href="<?= get_template_directory_uri(); ?>/assets/img/<?= get_option('site_favicon'); ?>" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="16x16"  href="<?= get_option('favicon'); ?>">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
     <title>Belajar</title>
     <?php wp_head(); ?>
 </head>
@@ -17,7 +18,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
         <div class="container">
             <a class="navbar-brand text-uppercase" href="<?php echo home_url(); ?>">
-                <img src="<?= get_template_directory_uri(); ?>/assets/img/<?= get_option('site_logo'); ?>" alt="">
+                <img src="<?= get_option('logo'); ?>" alt="logo-img" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
