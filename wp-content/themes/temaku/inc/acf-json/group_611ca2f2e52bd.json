@@ -1,0 +1,87 @@
+{
+    "key": "group_611ca2f2e52bd",
+    "title": "Spesifikasi",
+    "fields": [
+        {
+            "key": "field_611ca31238319",
+            "label": "CC",
+            "name": "cc",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "-",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_611ca3513831a",
+            "label": "Tahun Keluaran",
+            "name": "tahun_keluaran",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "-",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_611ca3673831b",
+            "label": "Wheel Drive",
+            "name": "wheel_drive",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "FWD": "FWD",
+                "RWD": "RWD",
+                "AWD": "AWD"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "FWD",
+            "layout": "horizontal",
+            "return_format": "value",
+            "save_other_choice": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "car"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1629277744
+}
