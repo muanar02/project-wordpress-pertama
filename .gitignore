@@ -1,20 +1,21 @@
 .htaccess
- *.DS_Store
- *.log
- *.zip
- *.wpress
- *.tar.gz
- *.rar
- *.tar
- *.conf
- *.bak
- apc.php
- info.php
- wp-config.php
- robots.txt
- sitemap.xml
- sitemap.xml.gz
- wp-content/*
- !wp-content/mu-plugins/
- !wp-content/plugins/
- !wp-content/themes/
+*.DS_Store
+*.log
+*.zip
+*.wpress
+*.tar.gz
+*.rar
+*.tar
+*.conf
+*.bak
+apc.php
+info.php
+wp-config.php
+robots.txt
+sitemap.xml
+sitemap.xml.gz
+wp-content/*
+!wp-content/index.php
+!wp-content/mu-plugins/
+!wp-content/plugins/
+!wp-content/themes/
